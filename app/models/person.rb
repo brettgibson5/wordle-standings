@@ -1,7 +1,8 @@
 class Person < ApplicationRecord
-    before_save :average
+    validates :name, :score, :rounds, presence: true
+    before_save :calculate_average
 
-    def average
-        (self[:score].to_f / self[:rounds]).round(4)
+    def calculate_average
+        self.average = (self[:score].to_f / self[:rounds]).round(4)
     end
 end
