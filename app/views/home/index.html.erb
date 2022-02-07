@@ -23,17 +23,20 @@
                             </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-gray-100">
-                            <tr>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="">1</div>
-                                </td>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="font-medium text-gray-800">Brett Gibson</div>
-                                </td>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-green-500">3.4</div>
-                                </td>
-                            </tr>
+                            <% @people.each do |person| %>
+
+                                <tr>
+                                    <td class="p-2 whitespace-nowrap">
+                                        <div class="">1</div>
+                                    </td>
+                                    <td class="p-2 whitespace-nowrap">
+                                        <div class="font-medium text-gray-800"><%= person.name %></div>
+                                    </td>
+                                    <td class="p-2 whitespace-nowrap">
+                                        <div class="text-left font-medium text-green-500"><%= person.average %></div>
+                                    </td>
+                                </tr>
+                            <% end %>
                         </tbody>
                     </table>
                 </div>
