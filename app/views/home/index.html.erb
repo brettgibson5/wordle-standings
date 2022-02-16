@@ -1,60 +1,60 @@
 <!-- component -->
 <section class="antialiased text-gray-600 h-screen">
-    <div class="flex flex-col justify-center">
-        <!-- Table -->
-        <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-            <header class="px-5 py-4 border-b border-gray-100">
-                <h2 class="font-semibold text-gray-800">Wordle Rankings</h2>
-            </header>
-            <div class="p-3">
-                <div class="overflow-x-auto">
-                    <table class="table-auto w-full">
-                        <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                            <tr>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Name</div>
-                                </th>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Average</div>
-                                </th>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Stats</div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm divide-y divide-gray-100">
-                            <% @people.each_with_index do |person, index| %>
-
-                                <tr>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-2 py-1 rounded-full mr-2"><%= index + 1 %></span>
-                                            <div class="font-medium text-gray-800 text-lg"><%= person.name %></div>
-                                        </div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-3xl font-bold text-green-500"><%= person.average.round(2) %></div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center mb-0.5">
-                                            <div class="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 rounded-full inline-flex text-xs text-white">
-                                                <div class="border-r border-white p-0.5 pl-1"><%= person.row1 %></div>
-                                                <div class="border-r border-white p-0.5"><%= person.row2 %></div>
-                                                <div class="border-r border-white p-0.5"><%= person.row3 %></div>
-                                                <div class="border-r border-white p-0.5"><%= person.row4 %></div>
-                                                <div class="border-r border-white p-0.5"><%= person.row5 %></div>
-                                                <div class="p-0.5 pr-1"><%= person.row6 %></div>
-                                            </div>
-                                            <div class="bg-black rounded-full ml-0.5 py-1 px-1.5 text-xs text-red-500 font-bold leading-3"><%= person.rowFail %></div>
-                                        </div>
-                                        <div class="text-xs text-gray-300"><%= person.score %> points / <%= person.rounds %> rounds</div>
-                                    </td>
-                                </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+  <div class="flex flex-col justify-center">
+    <!-- Table -->
+    <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+      <header class="px-5 py-4 border-b border-gray-100">
+        <h2 class="font-semibold text-gray-800">Wordle Rankings</h2>
+      </header>
+      <div class="p-3">
+        <div class="overflow-x-auto">
+          <table class="table-auto w-full">
+            <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+              <tr>
+                <th class="p-2 whitespace-nowrap">
+                  <div class="font-semibold text-left">Name</div>
+                </th>
+                <th class="p-2 whitespace-nowrap">
+                  <div class="font-semibold text-left">Average</div>
+                </th>
+                <th class="p-2 whitespace-nowrap">
+                  <div class="font-semibold text-left">Stats</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="text-sm divide-y divide-gray-100">
+              <% @people.each_with_index do |person, index| %>
+                <tr>
+                  <td class="p-2 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <span class="bg-gray-200 text-gray-600 text-xs font-semibold px-2 py-1 rounded-full mr-2"><%= index + 1 %></span>
+                      <div class="font-medium text-gray-800 text-lg"><%= person.name %></div>
+                    </div>
+                  </td>
+                  <td class="p-2 whitespace-nowrap">
+                    <div class="text-3xl font-bold text-green-500"><%= person.average.round(2) %></div>
+                  </td>
+                  <td class="p-2 whitespace-nowrap">
+                    <div class="flex items-center mb-0.5">
+                      <div class="bg-gradient-to-r from-green-500 via-yellow-500 to-red-500 rounded-full inline-flex text-xs text-white">
+                        <div class="border-r border-white p-0.5 pl-1"><%= person.row1 %></div>
+                        <div class="border-r border-white p-0.5"><%= person.row2 %></div>
+                        <div class="border-r border-white p-0.5"><%= person.row3 %></div>
+                        <div class="border-r border-white p-0.5"><%= person.row4 %></div>
+                        <div class="border-r border-white p-0.5"><%= person.row5 %></div>
+                        <div class="p-0.5 pr-1"><%= person.row6 %></div>
+                      </div>
+                      <div class="bg-black rounded-full ml-0.5 py-1 px-1.5 text-xs text-red-500 font-bold leading-3"><%= person.rowFail %></div>
+                    </div>
+                    <p class="text-xs text-gray-400"><%= person.score %> points / <%= person.rounds %> rounds<br />
+                      Last updated <%= distance_of_time_in_words_to_now(person.updated_at) %> ago</p>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
+  </div>
 </section>

@@ -1,57 +1,64 @@
-<%= form_with(model: person) do |form| %>
-  <% if person.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
-
-      <ul>
-        <% person.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<section class="antialiased text-gray-600 h-screen">
+  <div class="flex flex-col justify-center">
+    <!-- Table -->
+    <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+      <header class="px-5 py-4 border-b border-gray-100">
+        <h2 class="font-semibold text-gray-800"><%= title =%></h2>
+      </header>
+      <div class="p-3">
+        <%= form_with(model: person) do |form| %>
+          <% if person.errors.any? %>
+            <div id="error_explanation" class="bg-red-200 border border-red-300 p-2 max-w-2xl mx-auto my-4">
+              <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+              <ul>
+                <% person.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="field mb-2">
+            <%= form.label :name %>
+            <%= form.text_field :name, placeholder: :name, class: 'w-full rounded py-3 px-[14px] text-body-color text-base border border-gray-200 outline-none focus-visible:shadow-none focus:border-gray-300' %>
+          </div>
+          <div class="columns-4">
+            <div class="field mb-2">
+              <%= form.label 'Row 1' %>
+              <%= form.number_field :row1, placeholder: 'Row 1', class: 'w-full rounded py-3 px-[14px] text-body-color text-base border border-gray-200 outline-none focus-visible:shadow-none focus:border-gray-300' %>
+            </div>
+            <div class="field mb-2">
+              <%= form.label 'Row 2' %>
+              <%= form.number_field :row2, placeholder: 'Row 2', class: 'w-full rounded py-3 px-[14px] text-body-color text-base border border-gray-200 outline-none focus-visible:shadow-none focus:border-gray-300' %>
+            </div>
+            <div class="field mb-2">
+              <%= form.label 'Row 3' %>
+              <%= form.number_field :row3, placeholder: 'Row 3', class: 'w-full rounded py-3 px-[14px] text-body-color text-base border border-gray-200 outline-none focus-visible:shadow-none focus:border-gray-300' %>
+            </div>
+            <div class="field mb-2">
+              <%= form.label 'Row 4' %>
+              <%= form.number_field :row4, placeholder: 'Row 4', class: 'w-full rounded py-3 px-[14px] text-body-color text-base border border-gray-200 outline-none focus-visible:shadow-none focus:border-gray-300' %>
+            </div>
+          </div>
+          <div class="columns-4">
+            <div class="field mb-2">
+              <%= form.label 'Row 5' %>
+              <%= form.number_field :row5, placeholder: 'Row 5', class: 'w-full rounded py-3 px-[14px] text-body-color text-base border border-gray-200 outline-none focus-visible:shadow-none focus:border-gray-300' %>
+            </div>
+            <div class="field mb-2">
+              <%= form.label 'Row 6' %>
+              <%= form.number_field :row6, placeholder: 'Row 6', class: 'w-full rounded py-3 px-[14px] text-body-color text-base border border-gray-200 outline-none focus-visible:shadow-none focus:border-gray-300' %>
+            </div>
+            <div class="field mb-2">
+              <%= form.label 'Failures' %>
+              <%= form.number_field :rowFail, placeholder: 'Row Failure', class: 'w-full rounded py-3 px-[14px] text-body-color text-base border border-gray-200 outline-none focus-visible:shadow-none focus:border-gray-300' %>
+            </div>
+          </div>
+          <div class="actions flex justify-items-stretch mt-4">
+            <%= link_to 'Back', people_path, class: 'w-full text-center py-2 px-4 bg-gray-200 border border-gray-300 hover:bg-gray-300 rounded mr-2' %>
+            <%= form.submit 'Submit', :class => 'w-full text-center py-2 px-4 bg-green-500 hover:bg-green-600 text-white rounded' %>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
   </div>
-
-  <div class="field">
-    <%= form.label :row1 %>
-    <%= form.text_field :row1 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :row2 %>
-    <%= form.text_field :row2 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :row3 %>
-    <%= form.text_field :row3 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :row4 %>
-    <%= form.text_field :row4 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :row5 %>
-    <%= form.text_field :row5 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :row6 %>
-    <%= form.text_field :row6 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rowFail %>
-    <%= form.text_field :rowFail %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</section>

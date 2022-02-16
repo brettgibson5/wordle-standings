@@ -1,0 +1,24 @@
+<% if notice %>
+  <p id="notice" class="bg-amber-200 border border-amber-300 p-2 max-w-2xl mx-auto my-4"><%= notice %></p>
+<% end %>
+<section class="antialiased text-gray-600 h-screen">
+  <div class="flex flex-col justify-center">
+    <!-- Table -->
+    <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+      <header class="px-5 py-4 border-b border-gray-100">
+        <h2 class="font-semibold text-gray-800">Add a New Score</h2>
+      </header>
+      <div class="p-3">
+        <%= form_tag({controller: "people", action: "add_one"}, method: "post", class: "nifty_form") %>
+        <div class="flex">
+          <%= select(:data, :person_id, @people.collect { |p| [ p.name, p.id ] }, { :prompt => "Select Person" }, :required => true, class: 'mr-2 form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none') %>
+          <%= select(:data, :row_id, @options.collect { |p| [ p[:name], p[:value] ] }, { :prompt => "Select Score" }, :required => true, class: 'form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none') %>
+        </div>
+        <div class="flex justify-items-stretch mt-4">
+          <%= link_to 'Back', people_path, class: 'w-full text-center py-2 px-4 bg-gray-200 border border-gray-300 hover:bg-gray-300 rounded mr-2' %>
+          <%= submit_tag 'Save', class: 'w-full text-center py-2 px-4 bg-green-500 hover:bg-green-600 text-white rounded' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

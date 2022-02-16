@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
 
   # GET /people or /people.json
   def index
-    @people = Person.all
+    @people = Person.order("average ASC")
   end
 
   # GET /people/1 or /people/1.json
@@ -25,8 +25,8 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to person_url(@person), notice: "Person was successfully created." }
-        format.json { render :show, status: :created, location: @person }
+        format.html { redirect_to people_url, notice: "Person was successfully created." }
+        format.json { render :index, status: :created, location: @person }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @person.errors, status: :unprocessable_entity }
@@ -38,13 +38,44 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
-        format.html { redirect_to person_url(@person), notice: "Person was successfully updated." }
-        format.json { render :show, status: :ok, location: @person }
+        format.html { redirect_to people_url, notice: "Person was successfully updated." }
+        format.json { render :index, status: :ok }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def quick_edit
+    @people = Person.all
+    @options = [
+      {:name => '1', :value => :row1},
+      {:name => '2', :value => :row2},
+      {:name => '3', :value => :row3},
+      {:name => '4', :value => :row4},
+      {:name => '5', :value => :row5},
+      {:name => '6', :value => :row6},
+      {:name => 'Fail', :value => :rowFail},
+    ]
+  end
+
+  def add_one
+    puts params[:data].to_json
+    params.require(:data).permit(:person_id, :row1, :row2, :row3, :row4, :row5, :row6, :rowFail)
+    @person = Person.find(params[:data][:person_id])
+    row = params[:data][:row_id]
+    sum = @person[row].to_int + 1
+    respond_to do |format|
+      if @person.update_attribute(row, sum)
+          format.html { redirect_to people_url, notice: "Person was successfully updated." }
+          format.json { render json, status: :ok }
+      else
+        format.html { render :index, status: :unprocessable_entity }
+        format.json { render json: @person.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   # DELETE /people/1 or /people/1.json
