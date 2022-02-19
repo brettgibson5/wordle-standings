@@ -46,7 +46,7 @@
                       </div>
                       <div class="bg-black rounded-full ml-0.5 py-1 px-1.5 text-xs text-red-500 font-bold leading-3"><%= person.rowFail %></div>
                     </div>
-                    <p class="text-xs text-gray-400"><%= person.score %> points / <%= person.rounds %> rounds<br />
+                    <p class="text-xs text-gray-400"><%= person.score %> pts / <%= person.rounds %> rds, latest score: <%= person.last_score %><br />
                       Last updated <%= distance_of_time_in_words_to_now(person.updated_at) %> ago</p>
                   </td>
                 </tr>

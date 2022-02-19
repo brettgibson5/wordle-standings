@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_15_035601) do
+ActiveRecord::Schema.define(version: 2022_02_19_194614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,13 +22,14 @@ ActiveRecord::Schema.define(version: 2022_02_15_035601) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "average"
-    t.integer "row1"
-    t.integer "row2"
-    t.integer "row3"
-    t.integer "row4"
-    t.integer "row5"
-    t.integer "row6"
-    t.integer "rowFail"
+    t.integer "row1", default: 0, null: false
+    t.integer "row2", default: 0, null: false
+    t.integer "row3", default: 0, null: false
+    t.integer "row4", default: 0, null: false
+    t.integer "row5", default: 0, null: false
+    t.integer "row6", default: 0, null: false
+    t.integer "rowFail", default: 0, null: false
+    t.string "last_score"
   end
 
 end

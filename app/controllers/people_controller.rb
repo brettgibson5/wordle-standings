@@ -61,15 +61,16 @@ class PeopleController < ApplicationController
   end
 
   def add_one
-    puts params[:data].to_json
-    params.require(:data).permit(:person_id, :row1, :row2, :row3, :row4, :row5, :row6, :rowFail)
-    @person = Person.find(params[:data][:person_id])
-    row = params[:data][:row_id]
+    @person = Person.find(params[:person][:person_id])
+    row = params[:person][:row_id]
     sum = @person[row].to_int + 1
+    attributes_hash = {}
+    attributes_hash[row] = sum
+    attributes_hash['last_score'] = row.remove("row").downcase
     respond_to do |format|
-      if @person.update_attribute(row, sum)
-          format.html { redirect_to people_url, notice: "Person was successfully updated." }
-          format.json { render json, status: :ok }
+      if @person.update(attributes_hash)
+        format.html { redirect_to people_url, notice: "Person was successfully updated." }
+        format.json { render json, status: :ok }
       else
         format.html { render :index, status: :unprocessable_entity }
         format.json { render json: @person.errors, status: :unprocessable_entity }
