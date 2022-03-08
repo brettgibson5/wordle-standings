@@ -69,7 +69,7 @@ class PeopleController < ApplicationController
     attributes_hash['last_score'] = row.remove("row").downcase
     respond_to do |format|
       if @person.update(attributes_hash)
-        format.html { redirect_to people_url, notice: "Person was successfully updated." }
+        format.html { redirect_to people_quick_edit_path, notice: "#{@person.name} was successfully updated with a #{row.gsub("row", "")}." }
         format.json { render json, status: :ok }
       else
         format.html { render :index, status: :unprocessable_entity }
